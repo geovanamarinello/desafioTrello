@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.2.1 (Python 3.8.3 on win32)" generated="20210307 11:39:44.123" rpa="false">
+<suite id="s1" name="testCase" source="C:\Users\gpalomo\OneDrive - Padtec\Documentos\Cursos\Robot\Robot Avançado\Teste\testCase.robot">
+<test id="s1-t1" name="Autenticação no Trello">
+<kw name="Criar sessão Trello" library="trello">
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>${MY_TRELLO_KEY}</arg>
+<arg>${MY_TRELLO_TOKEN}</arg>
+</arguments>
+<assign>
+<var>${AUTH}</var>
+</assign>
+<msg timestamp="20210307 11:39:44.301" level="INFO">${AUTH} = ['c4fefee399261668ba7328c4de4ce9fa', 'b01f5ca3525313edf92f91089d281568b9e37de106bf446bf28bff33380717af']</msg>
+<status status="PASS" starttime="20210307 11:39:44.301" endtime="20210307 11:39:44.301"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>alias=mytrello</arg>
+<arg>url=${TRELLO_HOST}</arg>
+<arg>auth=${AUTH}</arg>
+</arguments>
+<msg timestamp="20210307 11:39:44.301" level="INFO">Creating Session using : alias=mytrello, url=https://api.trello.com, headers={},                     cookies={}, auth=&lt;requests.auth.HTTPBasicAuth object at 0x040BE628&gt;, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20210307 11:39:44.301" endtime="20210307 11:39:44.303"></status>
+</kw>
+<status status="PASS" starttime="20210307 11:39:44.301" endtime="20210307 11:39:44.303"></status>
+</kw>
+<kw name="Solicitar os dados do meu usuário" library="trello">
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>key=${MY_TRELLO_KEY}</arg>
+<arg>token=${MY_TRELLO_TOKEN}</arg>
+</arguments>
+<assign>
+<var>${PARAMS}</var>
+</assign>
+<msg timestamp="20210307 11:39:44.303" level="INFO">${PARAMS} = {'key': 'c4fefee399261668ba7328c4de4ce9fa', 'token': 'b01f5ca3525313edf92f91089d281568b9e37de106bf446bf28bff33380717af'}</msg>
+<status status="PASS" starttime="20210307 11:39:44.303" endtime="20210307 11:39:44.303"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>alias=mytrello</arg>
+<arg>uri=1/members/me</arg>
+<arg>params=${PARAMS}</arg>
+</arguments>
+<assign>
+<var>${RESPOSTA}</var>
+</assign>
+<msg timestamp="20210307 11:39:44.921" level="INFO">GET Request : url=https://api.trello.com/1/members/me?key=c4fefee399261668ba7328c4de4ce9fa&amp;token=b01f5ca3525313edf92f91089d281568b9e37de106bf446bf28bff33380717af 
+ path_url=/1/members/me?key=c4fefee399261668ba7328c4de4ce9fa&amp;token=b01f5ca3525313edf92f91089d281568b9e37de106bf446bf28bff33380717af 
+ headers={'User-Agent': 'python-requests/2.23.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Basic YzRmZWZlZTM5OTI2MTY2OGJhNzMyOGM0ZGU0Y2U5ZmE6YjAxZjVjYTM1MjUzMTNlZGY5MmY5MTA4OWQyODE1NjhiOWUzN2RlMTA2YmY0NDZiZjI4YmZmMzMzODA3MTdhZg=='} 
+ body=None 
+ </msg>
+<msg timestamp="20210307 11:39:44.921" level="INFO">GET Response : url=https://api.trello.com/1/members/me?key=c4fefee399261668ba7328c4de4ce9fa&amp;token=b01f5ca3525313edf92f91089d281568b9e37de106bf446bf28bff33380717af 
+ status=200, reason=OK 
+ body={"id":"604108d54d17b603949d6356","bio":"","bioData":null,"confirmed":true,"memberType":"normal","username":"geovanamarinello","aaId":"604108cb20122b0068928933","activityBlocked":false,"avatarHash":"3bf0b367acfed6b5a360f4b60322501f","avatarUrl":"https://trello-members.s3.amazonaws.com/604108d54d17b603949d6356/3bf0b367acfed6b5a360f4b60322501f","fullName":"Geovana Marinello","idEnterprise":null,"idEnterprisesDeactivated":[],"idMemberReferrer":null,"idPremOrgsAdmin":[],"initials":"GM","nonPublic":{},"nonPublicAvailable":true,"products":[],"url":"https://trello.com/geovanamarinello","status":"disconnected","aaBlockSyncUntil":null,"aaEmail":null,"aaEnrolledDate":null,"avatarSource":"none","credentialsRemovedCount":0,"domainClaimed":null,"email":"geehmarinello@gmail.com","gravatarHash":"66065b1ebcbe16768b7b05d2b94ef84f","idBoards":["604154a6da6ced47fe0889c9","60417e3e60fced0db6006e2b"],"idOrganizations":["604108e330f18c3a60d4e140"],"idEnterprisesAdmin":[],"loginTypes":["atlassian"],"marketingOptIn":{"optedIn":true,"date":"2021-03-04T16:20:38.238Z"},"messagesDismissed":[{"_id":"604108e3fb85265e407786bf","name":"team-join-cta-banner-604108e330f18c3a60d4e140","count":2,"lastDismissed":"2021-03-04T16:20:51.700Z"}],"oneTimeMessagesDismissed":["sent-possible-new-signup-event","close-menu-of-first-board","nusku.views-switcher-upsell-default-open"],"prefs":{"privacy":{"fullName":"public","avatar":"public"},"sendSummaries":true,"minutesBetweenSummaries":60,"minutesBeforeDeadlineToNotify":1440,"colorBlind":false,"locale":"pt-BR"},"trophies":[],"uploadedAvatarHash":null,"uploadedAvatarUrl":null,"premiumFeatures":[],"isAaMastered":true,"ixUpdate":"30","limits":{"boards":{"totalPerMember":{"status":"ok","disableAt":4500,"warnAt":4050}},"orgs":{"totalPerMember":{"status":"ok","disableAt":850,"warnAt":765}}}} 
+ </msg>
+<msg timestamp="20210307 11:39:44.921" level="INFO">c:\users\gpalomo\appdata\local\programs\python\python38-32\lib\site-packages\urllib3\connectionpool.py:979: InsecureRequestWarning: Unverified HTTPS request is being made to host 'api.trello.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20210307 11:39:44.921" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20210307 11:39:44.305" endtime="20210307 11:39:44.921"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPOSTA}</arg>
+</arguments>
+<msg timestamp="20210307 11:39:44.923" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20210307 11:39:44.921" endtime="20210307 11:39:44.923"></status>
+</kw>
+<status status="PASS" starttime="20210307 11:39:44.303" endtime="20210307 11:39:44.923"></status>
+</kw>
+<kw name="Conferir o status code" library="trello">
+<arguments>
+<arg>200</arg>
+</arguments>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${RESPOSTA.status_code}</arg>
+<arg>${STATUSCODE_DESEJADO}</arg>
+</arguments>
+<msg timestamp="20210307 11:39:44.923" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20210307 11:39:44.923" endtime="20210307 11:39:44.925"></status>
+</kw>
+<status status="PASS" starttime="20210307 11:39:44.923" endtime="20210307 11:39:44.925"></status>
+</kw>
+<kw name="Conferir o reason" library="trello">
+<arguments>
+<arg>OK</arg>
+</arguments>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPOSTA.reason}</arg>
+<arg>${REASON_DESEJADO}</arg>
+</arguments>
+<status status="PASS" starttime="20210307 11:39:44.925" endtime="20210307 11:39:44.925"></status>
+</kw>
+<status status="PASS" starttime="20210307 11:39:44.925" endtime="20210307 11:39:44.925"></status>
+</kw>
+<kw name="Conferir se retorna usuario &quot;geovanamarinello&quot;" library="trello">
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPOSTA.json()["username"]}</arg>
+<arg>${USER}</arg>
+</arguments>
+<status status="PASS" starttime="20210307 11:39:44.927" endtime="20210307 11:39:44.927"></status>
+</kw>
+<status status="PASS" starttime="20210307 11:39:44.927" endtime="20210307 11:39:44.927"></status>
+</kw>
+<status status="PASS" starttime="20210307 11:39:44.299" endtime="20210307 11:39:44.927" critical="yes"></status>
+</test>
+<test id="s1-t2" name="Criação de Card">
+<kw name="Criar um card" library="trello">
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>content-type=application/json</arg>
+</arguments>
+<assign>
+<var>${HEADERS}</var>
+</assign>
+<msg timestamp="20210307 11:39:44.933" level="INFO">${HEADERS} = {'content-type': 'application/json'}</msg>
+<status status="PASS" starttime="20210307 11:39:44.933" endtime="20210307 11:39:44.933"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>key=${MY_TRELLO_KEY}</arg>
+<arg>token=${MY_TRELLO_TOKEN}</arg>
+<arg>idList=${MY_ID_LIST}</arg>
+</arguments>
+<assign>
+<var>${PARAMS}</var>
+</assign>
+<msg timestamp="20210307 11:39:44.935" level="INFO">${PARAMS} = {'key': 'c4fefee399261668ba7328c4de4ce9fa', 'token': 'b01f5ca3525313edf92f91089d281568b9e37de106bf446bf28bff33380717af', 'idList': '604154a6da6ced47fe0889ca'}</msg>
+<status status="PASS" starttime="20210307 11:39:44.933" endtime="20210307 11:39:44.935"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>mytrello</arg>
+<arg>1/cards</arg>
+<arg>params=${PARAMS}</arg>
+<arg>data={"desc": "O primeiro card foi criado", "name": "PRIMEIRO CARD CRIADO"}</arg>
+<arg>headers=${HEADERS}</arg>
+</arguments>
+<assign>
+<var>${RESPOSTA}</var>
+</assign>
+<msg timestamp="20210307 11:39:45.227" level="INFO">POST Request : url=https://api.trello.com/1/cards?key=c4fefee399261668ba7328c4de4ce9fa&amp;token=b01f5ca3525313edf92f91089d281568b9e37de106bf446bf28bff33380717af&amp;idList=604154a6da6ced47fe0889ca 
+ path_url=/1/cards?key=c4fefee399261668ba7328c4de4ce9fa&amp;token=b01f5ca3525313edf92f91089d281568b9e37de106bf446bf28bff33380717af&amp;idList=604154a6da6ced47fe0889ca 
+ headers={'User-Agent': 'python-requests/2.23.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'content-type': 'application/json', 'Cookie': 'dsc=bceafc9bca868b1030cb25781f0681440b8648ea42668c3db1f9e198d447cec1', 'Content-Length': '70', 'Authorization': 'Basic YzRmZWZlZTM5OTI2MTY2OGJhNzMyOGM0ZGU0Y2U5ZmE6YjAxZjVjYTM1MjUzMTNlZGY5MmY5MTA4OWQyODE1NjhiOWUzN2RlMTA2YmY0NDZiZjI4YmZmMzMzODA3MTdhZg=='} 
+ body=b'{"desc": "O primeiro card foi criado", "name": "PRIMEIRO CARD CRIADO"}' 
+ </msg>
+<msg timestamp="20210307 11:39:45.227" level="INFO">POST Response : url=https://api.trello.com/1/cards?key=c4fefee399261668ba7328c4de4ce9fa&amp;token=b01f5ca3525313edf92f91089d281568b9e37de106bf446bf28bff33380717af&amp;idList=604154a6da6ced47fe0889ca 
+ status=200, reason=OK 
+ body={"id":"6044e5b0a0b79213e1595e84","checkItemStates":[],"closed":false,"dateLastActivity":"2021-03-07T14:39:44.025Z","desc":"O primeiro card foi criado","descData":{"emoji":{}},"dueReminder":null,"idBoard":"604154a6da6ced47fe0889c9","idList":"604154a6da6ced47fe0889ca","idMembersVoted":[],"idShort":68,"idAttachmentCover":null,"idLabels":[],"manualCoverAttachment":false,"name":"PRIMEIRO CARD CRIADO","pos":32768,"shortLink":"3vl2ECuU","isTemplate":false,"cardRole":null,"dueComplete":false,"due":null,"email":null,"labels":[],"shortUrl":"https://trello.com/c/3vl2ECuU","start":null,"url":"https://trello.com/c/3vl2ECuU/68-primeiro-card-criado","cover":{"idAttachment":null,"color":null,"idUploadedBackground":null,"size":"normal","brightness":"light","idPlugin":null},"idMembers":[],"attachments":[],"idChecklists":[],"badges":{"attachmentsByType":{"trello":{"board":0,"card":0}},"location":false,"votes":0,"viewingMemberVoted":false,"subscribed":false,"fogbugz":"","checkItems":0,"checkItemsChecked":0,"checkItemsEarliestDue":null,"comments":0,"attachments":0,"description":true,"due":null,"dueComplete":false,"start":null},"subscribed":false,"stickers":[],"limits":{}} 
+ </msg>
+<msg timestamp="20210307 11:39:45.227" level="INFO">c:\users\gpalomo\appdata\local\programs\python\python38-32\lib\site-packages\urllib3\connectionpool.py:979: InsecureRequestWarning: Unverified HTTPS request is being made to host 'api.trello.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20210307 11:39:45.227" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20210307 11:39:44.935" endtime="20210307 11:39:45.227"></status>
+</kw>
+<kw name="Get Variable Value" library="BuiltIn">
+<doc>Returns variable value or ``default`` if the variable does not exist.</doc>
+<arguments>
+<arg>${RESPOSTA.json()["id"]}</arg>
+</arguments>
+<assign>
+<var>${ID_CARD}</var>
+</assign>
+<msg timestamp="20210307 11:39:45.229" level="INFO">${ID_CARD} = 6044e5b0a0b79213e1595e84</msg>
+<status status="PASS" starttime="20210307 11:39:45.227" endtime="20210307 11:39:45.229"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${ID_CARD}</arg>
+</arguments>
+<msg timestamp="20210307 11:39:45.229" level="INFO">${ID_CARD} = 6044e5b0a0b79213e1595e84</msg>
+<status status="PASS" starttime="20210307 11:39:45.229" endtime="20210307 11:39:45.229"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPOSTA}</arg>
+</arguments>
+<msg timestamp="20210307 11:39:45.229" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20210307 11:39:45.229" endtime="20210307 11:39:45.229"></status>
+</kw>
+<status status="PASS" starttime="20210307 11:39:44.931" endtime="20210307 11:39:45.231"></status>
+</kw>
+<kw name="Conferir o status code" library="trello">
+<arguments>
+<arg>200</arg>
+</arguments>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${RESPOSTA.status_code}</arg>
+<arg>${STATUSCODE_DESEJADO}</arg>
+</arguments>
+<msg timestamp="20210307 11:39:45.231" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20210307 11:39:45.231" endtime="20210307 11:39:45.231"></status>
+</kw>
+<status status="PASS" starttime="20210307 11:39:45.231" endtime="20210307 11:39:45.231"></status>
+</kw>
+<kw name="Conferir o reason" library="trello">
+<arguments>
+<arg>OK</arg>
+</arguments>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPOSTA.reason}</arg>
+<arg>${REASON_DESEJADO}</arg>
+</arguments>
+<status status="PASS" starttime="20210307 11:39:45.233" endtime="20210307 11:39:45.233"></status>
+</kw>
+<status status="PASS" starttime="20210307 11:39:45.233" endtime="20210307 11:39:45.233"></status>
+</kw>
+<status status="PASS" starttime="20210307 11:39:44.929" endtime="20210307 11:39:45.233" critical="yes"></status>
+</test>
+<test id="s1-t3" name="Alteração do Card criado">
+<kw name="Alterar o nome do card &quot;${ID_CARD}&quot;" library="trello">
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>content-type=application/json</arg>
+</arguments>
+<assign>
+<var>${HEADERS}</var>
+</assign>
+<msg timestamp="20210307 11:39:45.239" level="INFO">${HEADERS} = {'content-type': 'application/json'}</msg>
+<status status="PASS" starttime="20210307 11:39:45.237" endtime="20210307 11:39:45.239"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>key=${MY_TRELLO_KEY}</arg>
+<arg>token=${MY_TRELLO_TOKEN}</arg>
+</arguments>
+<assign>
+<var>${PARAMS}</var>
+</assign>
+<msg timestamp="20210307 11:39:45.239" level="INFO">${PARAMS} = {'key': 'c4fefee399261668ba7328c4de4ce9fa', 'token': 'b01f5ca3525313edf92f91089d281568b9e37de106bf446bf28bff33380717af'}</msg>
+<status status="PASS" starttime="20210307 11:39:45.239" endtime="20210307 11:39:45.239"></status>
+</kw>
+<kw name="Put Request" library="RequestsLibrary">
+<doc>Send a PUT request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>mytrello</arg>
+<arg>1/cards/${ID_CARD}</arg>
+<arg>params=${PARAMS}</arg>
+<arg>data={"desc": "O nome do card foi alterado", "name": "MEU CARD ALTERADO"}</arg>
+<arg>headers=${HEADERS}</arg>
+</arguments>
+<assign>
+<var>${RESPOSTA}</var>
+</assign>
+<msg timestamp="20210307 11:39:45.637" level="INFO">PUT Request : url=https://api.trello.com/1/cards/6044e5b0a0b79213e1595e84?key=c4fefee399261668ba7328c4de4ce9fa&amp;token=b01f5ca3525313edf92f91089d281568b9e37de106bf446bf28bff33380717af 
+ path_url=/1/cards/6044e5b0a0b79213e1595e84?key=c4fefee399261668ba7328c4de4ce9fa&amp;token=b01f5ca3525313edf92f91089d281568b9e37de106bf446bf28bff33380717af 
+ headers={'User-Agent': 'python-requests/2.23.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'content-type': 'application/json', 'Cookie': 'dsc=bceafc9bca868b1030cb25781f0681440b8648ea42668c3db1f9e198d447cec1', 'Content-Length': '68', 'Authorization': 'Basic YzRmZWZlZTM5OTI2MTY2OGJhNzMyOGM0ZGU0Y2U5ZmE6YjAxZjVjYTM1MjUzMTNlZGY5MmY5MTA4OWQyODE1NjhiOWUzN2RlMTA2YmY0NDZiZjI4YmZmMzMzODA3MTdhZg=='} 
+ body=b'{"desc": "O nome do card foi alterado", "name": "MEU CARD ALTERADO"}' 
+ </msg>
+<msg timestamp="20210307 11:39:45.637" level="INFO">PUT Response : url=https://api.trello.com/1/cards/6044e5b0a0b79213e1595e84?key=c4fefee399261668ba7328c4de4ce9fa&amp;token=b01f5ca3525313edf92f91089d281568b9e37de106bf446bf28bff33380717af 
+ status=200, reason=OK 
+ body={"id":"6044e5b0a0b79213e1595e84","checkItemStates":[],"closed":false,"dateLastActivity":"2021-03-07T14:39:44.315Z","desc":"O nome do card foi alterado","descData":{"emoji":{}},"dueReminder":null,"idBoard":"604154a6da6ced47fe0889c9","idList":"604154a6da6ced47fe0889ca","idMembersVoted":[],"idShort":68,"idAttachmentCover":null,"idLabels":[],"manualCoverAttachment":false,"name":"MEU CARD ALTERADO","pos":32768,"shortLink":"3vl2ECuU","isTemplate":false,"cardRole":null,"dueComplete":false,"due":null,"email":null,"labels":[],"shortUrl":"https://trello.com/c/3vl2ECuU","start":null,"url":"https://trello.com/c/3vl2ECuU/68-meu-card-alterado","cover":{"idAttachment":null,"color":null,"idUploadedBackground":null,"size":"normal","brightness":"light","idPlugin":null},"idMembers":[],"badges":{"attachmentsByType":{"trello":{"board":0,"card":0}},"location":false,"votes":0,"viewingMemberVoted":false,"subscribed":false,"fogbugz":"","checkItems":0,"checkItemsChecked":0,"checkItemsEarliestDue":null,"comments":0,"attachments":0,"description":true,"due":null,"dueComplete":false,"start":null},"subscribed":false,"idChecklists":[]} 
+ </msg>
+<msg timestamp="20210307 11:39:45.637" level="INFO">c:\users\gpalomo\appdata\local\programs\python\python38-32\lib\site-packages\urllib3\connectionpool.py:979: InsecureRequestWarning: Unverified HTTPS request is being made to host 'api.trello.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20210307 11:39:45.637" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20210307 11:39:45.239" endtime="20210307 11:39:45.637"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPOSTA}</arg>
+</arguments>
+<msg timestamp="20210307 11:39:45.639" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20210307 11:39:45.637" endtime="20210307 11:39:45.639"></status>
+</kw>
+<status status="PASS" starttime="20210307 11:39:45.237" endtime="20210307 11:39:45.639"></status>
+</kw>
+<kw name="Conferir o status code" library="trello">
+<arguments>
+<arg>200</arg>
+</arguments>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${RESPOSTA.status_code}</arg>
+<arg>${STATUSCODE_DESEJADO}</arg>
+</arguments>
+<msg timestamp="20210307 11:39:45.639" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20210307 11:39:45.639" endtime="20210307 11:39:45.641"></status>
+</kw>
+<status status="PASS" starttime="20210307 11:39:45.639" endtime="20210307 11:39:45.641"></status>
+</kw>
+<kw name="Conferir o reason" library="trello">
+<arguments>
+<arg>OK</arg>
+</arguments>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPOSTA.reason}</arg>
+<arg>${REASON_DESEJADO}</arg>
+</arguments>
+<status status="PASS" starttime="20210307 11:39:45.641" endtime="20210307 11:39:45.641"></status>
+</kw>
+<status status="PASS" starttime="20210307 11:39:45.641" endtime="20210307 11:39:45.641"></status>
+</kw>
+<status status="PASS" starttime="20210307 11:39:45.235" endtime="20210307 11:39:45.643" critical="yes"></status>
+</test>
+<test id="s1-t4" name="Remoção do Card criado">
+<kw name="Arquivar o card &quot;${ID_CARD}&quot;" library="trello">
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>content-type=application/json</arg>
+</arguments>
+<assign>
+<var>${HEADERS}</var>
+</assign>
+<msg timestamp="20210307 11:39:45.647" level="INFO">${HEADERS} = {'content-type': 'application/json'}</msg>
+<status status="PASS" starttime="20210307 11:39:45.645" endtime="20210307 11:39:45.647"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>key=${MY_TRELLO_KEY}</arg>
+<arg>token=${MY_TRELLO_TOKEN}</arg>
+<arg>closed=true</arg>
+</arguments>
+<assign>
+<var>${PARAMS}</var>
+</assign>
+<msg timestamp="20210307 11:39:45.649" level="INFO">${PARAMS} = {'key': 'c4fefee399261668ba7328c4de4ce9fa', 'token': 'b01f5ca3525313edf92f91089d281568b9e37de106bf446bf28bff33380717af', 'closed': 'true'}</msg>
+<status status="PASS" starttime="20210307 11:39:45.647" endtime="20210307 11:39:45.649"></status>
+</kw>
+<kw name="Put Request" library="RequestsLibrary">
+<doc>Send a PUT request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>mytrello</arg>
+<arg>1/cards/${ID_CARD}</arg>
+<arg>params=${PARAMS}</arg>
+</arguments>
+<assign>
+<var>${RESPOSTA}</var>
+</assign>
+<msg timestamp="20210307 11:39:45.875" level="INFO">PUT Request : url=https://api.trello.com/1/cards/6044e5b0a0b79213e1595e84?key=c4fefee399261668ba7328c4de4ce9fa&amp;token=b01f5ca3525313edf92f91089d281568b9e37de106bf446bf28bff33380717af&amp;closed=true 
+ path_url=/1/cards/6044e5b0a0b79213e1595e84?key=c4fefee399261668ba7328c4de4ce9fa&amp;token=b01f5ca3525313edf92f91089d281568b9e37de106bf446bf28bff33380717af&amp;closed=true 
+ headers={'User-Agent': 'python-requests/2.23.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Cookie': 'dsc=bceafc9bca868b1030cb25781f0681440b8648ea42668c3db1f9e198d447cec1', 'Content-Length': '0', 'Authorization': 'Basic YzRmZWZlZTM5OTI2MTY2OGJhNzMyOGM0ZGU0Y2U5ZmE6YjAxZjVjYTM1MjUzMTNlZGY5MmY5MTA4OWQyODE1NjhiOWUzN2RlMTA2YmY0NDZiZjI4YmZmMzMzODA3MTdhZg=='} 
+ body=None 
+ </msg>
+<msg timestamp="20210307 11:39:45.875" level="INFO">PUT Response : url=https://api.trello.com/1/cards/6044e5b0a0b79213e1595e84?key=c4fefee399261668ba7328c4de4ce9fa&amp;token=b01f5ca3525313edf92f91089d281568b9e37de106bf446bf28bff33380717af&amp;closed=true 
+ status=200, reason=OK 
+ body={"id":"6044e5b0a0b79213e1595e84","checkItemStates":[],"closed":true,"dateLastActivity":"2021-03-07T14:39:44.711Z","desc":"O nome do card foi alterado","descData":{"emoji":{}},"dueReminder":null,"idBoard":"604154a6da6ced47fe0889c9","idList":"604154a6da6ced47fe0889ca","idMembersVoted":[],"idShort":68,"idAttachmentCover":null,"idLabels":[],"manualCoverAttachment":false,"name":"MEU CARD ALTERADO","pos":32768,"shortLink":"3vl2ECuU","isTemplate":false,"cardRole":null,"dueComplete":false,"due":null,"email":null,"labels":[],"shortUrl":"https://trello.com/c/3vl2ECuU","start":null,"url":"https://trello.com/c/3vl2ECuU/68-meu-card-alterado","cover":{"idAttachment":null,"color":null,"idUploadedBackground":null,"size":"normal","brightness":"light","idPlugin":null},"idMembers":[],"idChecklists":[],"badges":{"attachmentsByType":{"trello":{"board":0,"card":0}},"location":false,"votes":0,"viewingMemberVoted":false,"subscribed":false,"fogbugz":"","checkItems":0,"checkItemsChecked":0,"checkItemsEarliestDue":null,"comments":0,"attachments":0,"description":true,"due":null,"dueComplete":false,"start":null},"subscribed":false} 
+ </msg>
+<msg timestamp="20210307 11:39:45.875" level="INFO">c:\users\gpalomo\appdata\local\programs\python\python38-32\lib\site-packages\urllib3\connectionpool.py:979: InsecureRequestWarning: Unverified HTTPS request is being made to host 'api.trello.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20210307 11:39:45.877" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20210307 11:39:45.649" endtime="20210307 11:39:45.877"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPOSTA}</arg>
+</arguments>
+<msg timestamp="20210307 11:39:45.877" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20210307 11:39:45.877" endtime="20210307 11:39:45.877"></status>
+</kw>
+<status status="PASS" starttime="20210307 11:39:45.645" endtime="20210307 11:39:45.877"></status>
+</kw>
+<kw name="Conferir o status code" library="trello">
+<arguments>
+<arg>200</arg>
+</arguments>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${RESPOSTA.status_code}</arg>
+<arg>${STATUSCODE_DESEJADO}</arg>
+</arguments>
+<msg timestamp="20210307 11:39:45.879" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20210307 11:39:45.879" endtime="20210307 11:39:45.879"></status>
+</kw>
+<status status="PASS" starttime="20210307 11:39:45.877" endtime="20210307 11:39:45.879"></status>
+</kw>
+<kw name="Conferir o reason" library="trello">
+<arguments>
+<arg>OK</arg>
+</arguments>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPOSTA.reason}</arg>
+<arg>${REASON_DESEJADO}</arg>
+</arguments>
+<status status="PASS" starttime="20210307 11:39:45.881" endtime="20210307 11:39:45.881"></status>
+</kw>
+<status status="PASS" starttime="20210307 11:39:45.881" endtime="20210307 11:39:45.881"></status>
+</kw>
+<kw name="Remover o card &quot;${ID_CARD}&quot;" library="trello">
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>content-type=application/json</arg>
+</arguments>
+<assign>
+<var>${HEADERS}</var>
+</assign>
+<msg timestamp="20210307 11:39:45.883" level="INFO">${HEADERS} = {'content-type': 'application/json'}</msg>
+<status status="PASS" starttime="20210307 11:39:45.883" endtime="20210307 11:39:45.883"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>key=${MY_TRELLO_KEY}</arg>
+<arg>token=${MY_TRELLO_TOKEN}</arg>
+</arguments>
+<assign>
+<var>${PARAMS}</var>
+</assign>
+<msg timestamp="20210307 11:39:45.883" level="INFO">${PARAMS} = {'key': 'c4fefee399261668ba7328c4de4ce9fa', 'token': 'b01f5ca3525313edf92f91089d281568b9e37de106bf446bf28bff33380717af'}</msg>
+<status status="PASS" starttime="20210307 11:39:45.883" endtime="20210307 11:39:45.883"></status>
+</kw>
+<kw name="Delete Request" library="RequestsLibrary">
+<doc>Send a DELETE request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>mytrello</arg>
+<arg>1/cards/${ID_CARD}</arg>
+<arg>params=${PARAMS}</arg>
+</arguments>
+<assign>
+<var>${RESPOSTA}</var>
+</assign>
+<msg timestamp="20210307 11:39:46.149" level="INFO">DELETE Request : url=https://api.trello.com/1/cards/6044e5b0a0b79213e1595e84?key=c4fefee399261668ba7328c4de4ce9fa&amp;token=b01f5ca3525313edf92f91089d281568b9e37de106bf446bf28bff33380717af 
+ path_url=/1/cards/6044e5b0a0b79213e1595e84?key=c4fefee399261668ba7328c4de4ce9fa&amp;token=b01f5ca3525313edf92f91089d281568b9e37de106bf446bf28bff33380717af 
+ headers={'User-Agent': 'python-requests/2.23.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Cookie': 'dsc=bceafc9bca868b1030cb25781f0681440b8648ea42668c3db1f9e198d447cec1', 'Content-Length': '0', 'Authorization': 'Basic YzRmZWZlZTM5OTI2MTY2OGJhNzMyOGM0ZGU0Y2U5ZmE6YjAxZjVjYTM1MjUzMTNlZGY5MmY5MTA4OWQyODE1NjhiOWUzN2RlMTA2YmY0NDZiZjI4YmZmMzMzODA3MTdhZg=='} 
+ body=None 
+ </msg>
+<msg timestamp="20210307 11:39:46.149" level="INFO">DELETE Response : url=https://api.trello.com/1/cards/6044e5b0a0b79213e1595e84?key=c4fefee399261668ba7328c4de4ce9fa&amp;token=b01f5ca3525313edf92f91089d281568b9e37de106bf446bf28bff33380717af 
+ status=200, reason=OK 
+ body={"limits":{}} 
+ </msg>
+<msg timestamp="20210307 11:39:46.151" level="INFO">c:\users\gpalomo\appdata\local\programs\python\python38-32\lib\site-packages\urllib3\connectionpool.py:979: InsecureRequestWarning: Unverified HTTPS request is being made to host 'api.trello.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20210307 11:39:46.151" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20210307 11:39:45.883" endtime="20210307 11:39:46.151"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPOSTA}</arg>
+</arguments>
+<msg timestamp="20210307 11:39:46.151" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20210307 11:39:46.151" endtime="20210307 11:39:46.153"></status>
+</kw>
+<status status="PASS" starttime="20210307 11:39:45.881" endtime="20210307 11:39:46.153"></status>
+</kw>
+<kw name="Conferir o reason" library="trello">
+<arguments>
+<arg>OK</arg>
+</arguments>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPOSTA.reason}</arg>
+<arg>${REASON_DESEJADO}</arg>
+</arguments>
+<status status="PASS" starttime="20210307 11:39:46.153" endtime="20210307 11:39:46.153"></status>
+</kw>
+<status status="PASS" starttime="20210307 11:39:46.153" endtime="20210307 11:39:46.153"></status>
+</kw>
+<kw name="Conferir o status code" library="trello">
+<arguments>
+<arg>200</arg>
+</arguments>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${RESPOSTA.status_code}</arg>
+<arg>${STATUSCODE_DESEJADO}</arg>
+</arguments>
+<msg timestamp="20210307 11:39:46.155" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20210307 11:39:46.155" endtime="20210307 11:39:46.155"></status>
+</kw>
+<status status="PASS" starttime="20210307 11:39:46.155" endtime="20210307 11:39:46.155"></status>
+</kw>
+<status status="PASS" starttime="20210307 11:39:45.643" endtime="20210307 11:39:46.155" critical="yes"></status>
+</test>
+<doc>Documentação Trello: https://developer.atlassian.com/cloud/trello/rest/api-group-actions/
+Documentação RequestsLibrary: http://marketsquare.github.io/robotframework-requests/doc/RequestsLibrary.html#Post%20Request</doc>
+<status status="PASS" starttime="20210307 11:39:44.125" endtime="20210307 11:39:46.157"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="0">Critical Tests</stat>
+<stat pass="4" fail="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="4" fail="0" id="s1" name="testCase">testCase</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
