@@ -6,6 +6,7 @@ Para executar, seguir as seguintes instruções
 	pip install robotframework
 	pip install --upgrade robotframework-seleniumlibrary
 	pip install -U robotframework-requests
-3-Para executar, basta abrir a pasta que o arquivo está e executar 
+3-O arquivo tokens.robot deve estar dentro da pasta variables ou deve ser alterado no trello.robot
+4-Para executar, basta abrir a pasta que o arquivo está e executar 
 	robot -d \results testCase.robot
-4-Já está em anexo os logs da executação dos testes em documentos que o robot fornece 
+5-Já está em anexo os logs da executação dos testes em documentos que o robot fornece 
